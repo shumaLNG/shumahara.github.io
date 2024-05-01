@@ -8,92 +8,106 @@
    # Global selectors
    # ================================================================= */
 
+/* HTML要素のボックスモデルやフォントサイズをリセット */
 html {
   box-sizing: border-box;
   word-break: normal;
   -moz-tab-size: 4;
   tab-size: 4;
 
-  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+  -webkit-text-size-adjust: 100%; /* iOSの縦向き変更後のフォントサイズ調整を防止 */
 }
 
+/* 全要素と疑似要素のボックスモデルと背景画像のリピートをリセット */
 *,
 ::before,
 ::after {
   box-sizing: inherit;
-  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+  background-repeat: no-repeat;
 }
 
+/* 疑似要素に継承を設定 */
 ::before,
 ::after {
   vertical-align: inherit;
-  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+  text-decoration: inherit;
 }
 
+/* すべての要素のマージンとパディングをリセット */
 * {
   margin: 0;
-  padding: 0; /* Reset `padding` and `margin` of all elements */
+  padding: 0;
 }
 
 /* # =================================================================
    # General elements
    # ================================================================= */
 
+/* 水平線要素のスタイルを設定 */
 hr {
-  overflow: visible; /* Show the overflow in Edge and IE */
-  height: 0; /* Add the correct box sizing in Firefox */
+  overflow: visible;
+  height: 0;
 }
 
+/* 詳細要素とメイン要素のスタイルを設定 */
 details,
 main {
-  display: block; /* Render the `main` element consistently in IE. */
+  display: block;
 }
 
+/* サマリー要素のスタイルを設定 */
 summary {
-  display: list-item; /* Add the correct display in all browsers */
+  display: list-item;
 }
 
+/* 小さなテキストのスタイルを設定 */
 small {
-  font-size: 80%; /* Set font-size to 80% in `small` elements */
+  font-size: 80%;
 }
 
+/* 非表示要素のスタイルを設定 */
 [hidden] {
-  display: none; /* Add the correct display in IE */
+  display: none;
 }
 
+/* アブリエーションの下線スタイルを設定 */
 abbr[title] {
-  /* Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari */
   text-decoration: underline;
   text-decoration: underline dotted;
-  border-bottom: none; /* Remove the bottom border in Chrome 57 */
+  border-bottom: none;
 }
 
+/* アクティブなリンクの背景色を透明に設定 */
 a {
-  background-color: transparent; /* Remove the gray background on active links in IE 10 */
+  background-color: transparent;
 }
 
+/* リンクにマウスオーバー時のアウトラインを削除 */
 a:active,
 a:hover {
-  outline-width: 0; /* Remove the outline when hovering in all browsers */
+  outline-width: 0;
 }
 
+/* コード関連要素のフォントファミリーを設定 */
 code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace; /* Specify the font family of code elements */
+  font-family: monospace, monospace;
 }
 
+/* プリフォーマットされたテキスト要素のフォントサイズを設定 */
 pre {
-  font-size: 1em; /* Correct the odd `em` font sizing in all browsers */
+  font-size: 1em;
 }
 
+/* 太字のテキスト要素のフォントウェイトを設定 */
 b,
 strong {
-  font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
+  font-weight: bolder;
 }
 
-/* https://gist.github.com/unruthless/413930 */
+/* 上付き文字と下付き文字のスタイルを設定 */
 sub,
 sup {
   position: relative;
@@ -114,57 +128,64 @@ sup {
    # Forms
    # ================================================================= */
 
+/* 入力要素の角をリセット */
 input {
   border-radius: 0;
 }
 
-/* Replace pointer cursor in disabled elements */
+/* 無効な要素のカーソルをデフォルトに設定 */
 [disabled] {
   cursor: default;
 }
 
+/* 数値入力要素のカーソルスタイルを修正 */
 [type="number"]::-webkit-container-spin-button,
 [type="number"]::-webkit-outer-spin-button {
-  height: auto; /* Correct the cursor style of increment and decrement buttons in Chrome */
+  height: auto;
 }
 
+/* 検索入力要素のアウトラインスタイルを修正 */
 [type="search"] {
-  outline-offset: -2px; /* Correct the outline style in Safari */
-
-  -webkit-appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
+  outline-offset: -2px;
+  -webkit-appearance: textfield;
 }
 
 [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; /* Remove the container padding in Chrome and Safari on macOS */
+  -webkit-appearance: none;
 }
 
+/* テキストエリアのスタイルを設定 */
 textarea {
-  overflow: auto; /* Internet Explorer 11+ */
-  resize: vertical; /* Specify textarea resizability */
+  overflow: auto;
+  resize: vertical;
 }
 
+/* フォーム要素のフォントを継承 */
 button,
 input,
 optgroup,
 select,
 textarea {
-  font: inherit; /* Specify font inheritance of form elements */
+  font: inherit;
 }
 
+/* オプトグループ要素のフォントウェイトを設定 */
 optgroup {
-  font-weight: bold; /* Restore the font weight unset by the previous rule */
+  font-weight: bold;
 }
 
+/* ボタン要素のオーバーフロースタイルを修正 */
 button {
-  overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+  overflow: visible;
 }
 
+/* ボタン要素とセレクト要素のテキスト変換をリセット */
 button,
 select {
-  text-transform: none; /* Firefox 40+, Internet Explorer 11- */
+  text-transform: none;
 }
 
-/* Apply cursor pointer to button elements */
+/* クリッカブルな要素にポインターカーソルを設定 */
 button,
 [type="button"],
 [type="reset"],
@@ -174,32 +195,23 @@ button,
   color: inherit;
 }
 
-/* Remove container padding and border in Firefox 4+ */
-button::-moz-focus-container,
-[type="button"]::-moz-focus-container,
-[type="reset"]::-moz-focus-container,
-[type="submit"]::-moz-focus-container {
-  padding: 0;
-  border-style: none;
-}
-
-/* Replace focus style removed in the border reset above */
-button:-moz-focusring,
-[type="button"]::-moz-focus-container,
-[type="reset"]::-moz-focus-container,
-[type="submit"]::-moz-focus-container {
+/* フォーカスリングスタイルをリセット */
+button::-moz-focusring,
+[type="button"]::-moz-focusring,
+[type="reset"]::-moz-focusring,
+[type="submit"]::-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
+/* ボタン要素の外観を修正 */
 button,
 html [type="button"],
-/* Prevent a WebKit bug where (2) destroys native `audio` and `video`controls in Android 4 */
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+  -webkit-appearance: button;
 }
 
-/* Remove the default button styling in all browsers */
+/* ボタン要素などのデフォルトスタイルをリセット */
 button,
 input,
 select,
@@ -208,76 +220,31 @@ textarea {
   background-color: transparent;
 }
 
-/* Style select like a standard input */
+/* セレクト要素の外観を修正 */
 select {
-  -webkit-appearance: none; /* Chrome 41+ */
-  -moz-appearance: none; /* Firefox 36+ */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 select::-ms-expand {
-  display: none; /* Internet Explorer 11+ */
+  display: none;
 }
 
 select::-ms-value {
-  color: currentColor; /* Internet Explorer 11+ */
+  color: currentColor;
 }
 
+/* レジェンド要素のスタイルを設定 */
 legend {
-  display: table; /* Correct the text wrapping in Edge and IE */
-  max-width: 100%; /* Correct the text wrapping in Edge and IE */
-  max-width: 100%; /* Correct the text wrapping in Edge 18- and IE */
-  white-space: normal; /* Correct the text wrapping in Edge and IE */
-  color: inherit; /* Correct the color inheritance from `fieldset` elements in IE */
-  border: 0; /* Correct `color` not being inherited in IE 8/9/10/11 */
-}
-
-::-webkit-file-upload-button {
-  font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
+  display: table;
+  max-width: 100%;
+  white-space: normal;
   color: inherit;
-  /* Correct the inability to style clickable types in iOS and Safari */
-
-  -webkit-appearance: button;
+  border: 0;
 }
 
-/* # =================================================================
-   # Specify media element style
-   # ================================================================= */
-
-img {
-  border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
-}
-
-/* Add the correct vertical alignment in Chrome, Firefox, and Opera */
-progress {
-  vertical-align: baseline;
-}
-
-/* # =================================================================
-   # Accessibility
-   # ================================================================= */
-
-/* Hide content from screens but not screenreaders */
-@media screen {
-  [hidden~="screen"] {
-    display: inherit;
-  }
-  [hidden~="screen"]:not(:active):not(:focus):not(:target) {
-    position: absolute !important;
-    clip: rect(0 0 0 0) !important;
-  }
-}
-
-/* Specify the progress cursor of updating elements */
-[aria-busy="true"] {
-  cursor: progress;
-}
-
-/* Specify the pointer cursor of trigger elements */
-[aria-controls] {
-  cursor: pointer;
-}
-
-/* Specify the unstyled cursor of disabled, not-editable, or otherwise inoperable elements */
-[aria-disabled] {
-  cursor: default;
-}
+/* ファイルアップロードボタン要素のスタイルを設定 */
+::-webkit-file-upload-button {
+  font: inherit;
+  color: inherit;
+  -webkit-appearance: button
