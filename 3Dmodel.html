@@ -55,7 +55,30 @@
             <h3>3Dモデルの全体像</h3>
             <p>銀魂に登場する土方十四郎を頂点を一つ一つ増やしていく方法で作成しました。<br>
             
-            ほんとはここにモデルを置きたい。。。
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+            <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            const loader = new THREE.GLTFLoader();
+            loader.load('path/to/your/model.glb', function (gltf) {
+                const model = gltf.scene;
+                scene.add(model);
+            });
+
+            camera.position.z = 5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+
+            animate();
+            </script>
             </p>
             
             <h3>工夫したところ</h3>
