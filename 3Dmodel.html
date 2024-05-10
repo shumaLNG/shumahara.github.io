@@ -17,7 +17,10 @@
   <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="img/favicon.ico" />
   <link rel=”canonical” href=”URLが入る” />
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <!-- A-FrameをCDNから読み込む -->
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <!-- aframe-orbit-controlsをCDNから読み込む -->
+  <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
 </head>
 
 <body>
@@ -56,19 +59,17 @@
             <h3>3Dモデルの全体像</h3>
             <p>銀魂に登場する土方十四郎を頂点を一つ一つ増やしていく方法で作成しました。<br>
 
-            <!-- <a-scene>
-              <a-assets>
-  　　　　    <!-- モデルを読み込む -->
-     　　　　 <a-asset-item id="hijikata" src="blender/hijikata.glb"></a-asset-item>
-   　　　　　 </a-assets>
-
-              <!-- GLBモデルを表示 -->
-              <a-gltf-model src="#hijikata" position="0 0 0" scale="0.1 0.1 0.1"></a-gltf-model>
+            <a-scene>
+              <!-- aframe-orbit-controlsのプロパティを記述 -->
+              <a-entity camera look-controls orbit-controls="target: 0 1.6 -0.5; maxPolarAngle:180; minDistance: 0.5; maxDistance: 200; initialPosition: 0 0 30"></a-entity>
+              
+              <!-- 3Dモデルを読み込んで、位置やスケールなど定義する -->
+              <a-gltf-model  id="test" src="blender/hijikata.glb"  position="0 -1 0" rotation="20 124 7" scale="0.1 0.1 0.1"></a-gltf-model>
+              
+              <!-- 背景色-->
+              <a-sky color="#9EA1E7"></a-sky>
           
-              <!-- カメラと環境光源 -->
-              <a-entity camera position="0 1.6 0" look-controls></a-entity>
-              <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
-            </a-scene>-->
+            </a-scene>
             </p>
             
             <h3>工夫したところ</h3>
