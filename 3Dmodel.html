@@ -65,7 +65,7 @@
             document.body.appendChild(renderer.domElement);
 
             const loader = new THREE.GLTFLoader();
-            loader.load('path/to/your/model.glb', function (gltf) {
+            loader.load('blender/hijikata.glb', function (gltf) {
                 const model = gltf.scene;
                 scene.add(model);
             });
