@@ -1917,9 +1917,9 @@
 		{
 			"bufferView":120,
 			"componentType":5126,
-			"count":1644,
+			"count":3278,
 			"max":[
-				0,
+				30.829803466796875,
 				69.20726013183594,
 				5.3134541511535645
 			],
@@ -1933,27 +1933,27 @@
 		{
 			"bufferView":121,
 			"componentType":5126,
-			"count":1644,
+			"count":3278,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":122,
 			"componentType":5126,
-			"count":1644,
+			"count":3278,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":123,
 			"componentType":5123,
-			"count":3345,
+			"count":6690,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":124,
 			"componentType":5126,
-			"count":1144,
+			"count":2253,
 			"max":[
-				0,
+				31.052366256713867,
 				70.09762573242188,
 				5.80040979385376
 			],
@@ -1967,19 +1967,19 @@
 		{
 			"bufferView":125,
 			"componentType":5126,
-			"count":1144,
+			"count":2253,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":126,
 			"componentType":5126,
-			"count":1144,
+			"count":2253,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":127,
 			"componentType":5123,
-			"count":4632,
+			"count":9264,
 			"type":"SCALAR"
 		}
 	],
@@ -2706,56 +2706,56 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":19728,
+			"byteLength":39336,
 			"byteOffset":370900,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":19728,
-			"byteOffset":390628,
+			"byteLength":39336,
+			"byteOffset":410236,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13152,
-			"byteOffset":410356,
+			"byteLength":26224,
+			"byteOffset":449572,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":6690,
-			"byteOffset":423508,
+			"byteLength":13380,
+			"byteOffset":475796,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":13728,
-			"byteOffset":430200,
+			"byteLength":27036,
+			"byteOffset":489176,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13728,
-			"byteOffset":443928,
+			"byteLength":27036,
+			"byteOffset":516212,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9152,
-			"byteOffset":457656,
+			"byteLength":18024,
+			"byteOffset":543248,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9264,
-			"byteOffset":466808,
+			"byteLength":18528,
+			"byteOffset":561272,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":476072,
+			"byteLength":579800,
 			"uri":"hijikata.bin"
 		}
 	]
