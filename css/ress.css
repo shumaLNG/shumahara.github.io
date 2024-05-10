@@ -281,3 +281,19 @@ progress {
 [aria-disabled] {
   cursor: default;
 }
+
+.blend{
+	position:relative;
+	width:720px; /*背景画像の横幅*/
+	height:480px; /*背景画像の縦幅*/
+	background: url(base.jpg);
+}
+.blend__over{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	mix-blend-mode: color-burn; /*値を変更すれば様々な効果を与えられます*/
+}
