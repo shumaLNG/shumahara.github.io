@@ -1,4 +1,8 @@
-int NUM = 2000;
+int NUM; // 球の数を格納する変数
+
+// HTMLから球の数を取得
+String numParticlesStr = select("#numParticles").value();
+NUM = int(numParticlesStr);
 
 ParticleVec3[] particles = new ParticleVec3[NUM];
 
