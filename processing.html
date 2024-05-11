@@ -17,6 +17,8 @@
   <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="img/favicon.ico" />
   <link rel=”canonical” href=”URLが入る” />
+  <script src="js/processing.js">
+  </script>
 </head>
 <body>
   <div class="wrapper">
@@ -48,14 +50,9 @@
             <p>
               マウスに引力をもたせ、カラフルな球がマウスに引き寄せられていくコードを作成しました。
             </p>
-            <h3>球の数</h3>
-            <p>
-              <label for="numParticles">球の数：</label>
-              <input type="number" id="numParticles" value="3000">
-            </p>
             <h3>実行結果</h3>
             マウスに球を引き寄せるためには枠の中でクリックしたあと好きな方向に動かしてみてください。
-            <canvas id="myCanvas" width="800" height="600"></canvas>
+            <p><canvas datasrc="mouse.pde" width="200" height="200"></canvas></p>
             
             <h3>コーディングについて</h3>
             <p>
@@ -82,52 +79,6 @@
 
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/processing.js"></script>
-  <script type="text/javascript">
-    // 球の数を取得
-    var numParticles = document.getElementById("numParticles").value;
-
-    // Processingスケッチの初期化
-    var canvas = document.getElementById("myCanvas");
-    var processingInstance = new Processing(canvas, function(p) {
-      p.setup = function() {
-        p.size(800, 600, p.P3D);
-        p.frameRate(60);
-
-        // 球の数だけParticleVec3クラスのインスタンスを生成する
-        var particles = [];
-        for (var i = 0; i < numParticles; i++) {
-          var particle = new ParticleVec3();
-          particle.location.set(p.random(p.width), p.random(p.height), p.random(p.height / 2));
-          particle.gravity.set(0.0, 0.0, 0.0);
-          particle.friction = 0.01;
-          particle.radius = p.random(1, 5);
-          particles.push(particle);
-        }
-
-        p.draw = function() {
-          p.background(0);
-          p.noStroke();
-          p.fill(0, 31);
-          p.rect(0, 0, p.width, p.height);
-
-          for (var i = 0; i < particles.length; i++) {
-            p.fill(p.random(255), p.random(255), p.random(255));
-
-            particles[i].update();
-            particles[i].draw();
-            particles[i].bounceOffWalls();
-          }
-        };
-
-        p.mouseDragged = function() {
-          for (var i = 0; i < particles.length; i++) {
-            var mouseLoc = new PVector(p.mouseX, p.mouseY);
-            particles[i].attract(mouseLoc, 200, 5, 20);
-          }
-        };
-      };
-    });
-  </script>
+  <script type='text/javascript' src="js/script.js"></script>
 </body>
 </html>
