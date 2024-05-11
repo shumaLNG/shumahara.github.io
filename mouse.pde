@@ -1,14 +1,16 @@
 int NUM; // 球の数を格納する変数
 
-// HTMLから球の数を取得
-String numParticlesStr = select("#numParticles").value();
-NUM = int(numParticlesStr);
-
-ParticleVec3[] particles = new ParticleVec3[NUM];
+ParticleVec3[] particles;
 
 void setup(){
   size(800, 600, P3D);
   frameRate(60);
+
+  // HTMLから球の数を取得
+  String numParticlesStr = select("#numParticles").value();
+  NUM = int(numParticlesStr);
+
+  particles = new ParticleVec3[NUM];
   
   for(int i = 0; i < NUM; i++){
     particles[i] = new ParticleVec3();
