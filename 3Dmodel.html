@@ -56,18 +56,6 @@
               Blenderを用いた3Dモデルの作成には、①頂点を増やしていき構成する方法と②スクリプト機能を用いて作成した方法の二つがありますが、今回は①の頂点を増やしていって制作しました。
             </p>
             
-            <h3>3Dモデルの全体像</h3>
-            <p>銀魂に登場する土方十四郎を頂点を一つ一つ増やしていく方法で作成しました。<br>
-              <a-scene>
-                <!-- aframe-orbit-controlsのプロパティを記述 -->
-                <a-entity camera look-controls orbit-controls="target: 0 1.6 -0.5; maxPolarAngle:180; minDistance: 0.5; maxDistance: 200; initialPosition: 0 0 30"></a-entity>
-                
-                <!-- 3Dモデルを読み込んで、位置やスケールなど定義する -->
-                <a-gltf-model  id="test" src="blender/hijikata.gltf"  position="0 -1 0" rotation="20 124 7" scale="100 100 100"></a-gltf-model>
-
-               
-              </a-scene>
-            </p>
             
             <h3>工夫したところ</h3>
             <p>
