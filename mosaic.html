@@ -2,135 +2,91 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Processing Sketch in HTML</title>
-  <!-- Processing.js ライブラリの読み込み -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta property='og:type' content='website'>
+  <meta property='og:title' content='SHUMA HARAポートフォリオ'>
+  <meta property='og:url' content='URLが入る'>
+  <meta property='og:description' content='SHUMA HARAのポートフォリオサイトです。'>
+  <meta property="og:image" content="img/ogp.png">
+  <meta name="description" content="SHUMA HARAのポートフォリオサイトです" />
+  <title>SHUMA HARA PORTFOLIO</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="css/ress.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="img/favicon.ico" />
+  <link rel=”canonical” href=”URLが入る” />
+  <script src="js/processing.js">
+  </script>
 </head>
 <body>
-  <!-- ファイルアップロードフォーム -->
-  <input type="file" id="uploadInput" accept="image/png">
-  <br>
-  <!-- Processingスケッチを描画するためのcanvas要素 -->
-  <canvas id="mycanvas"></canvas>
+  <div class="wrapper">
 
-  <script type="text/javascript">
-    // ファイルアップロード時の処理
-    document.getElementById('uploadInput').addEventListener('change', function(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
-      reader.onload = function(event) {
-        img = new Image();
-        img.src = event.target.result;
-        img.onload = function() {
-          // Processingスケッチを再描画
-          myp5.setup();
-        };
-      };
-      reader.readAsDataURL(file);
-    });
+    <!-- header -->
+    <header class="header ">
+      <div class="container">
+        <h1 class="header-logo">
+          <a href=".">SHUMA HARA</a>
+        </h1>
+        <nav class="gnav">
+          <ul class="gnav-list">
+            <li class="gnav-item"><a href=".#works">WORKS</a></li>
+            <li class="gnav-item"><a href="./#skill">SKILL</a></li>
+            <li class="gnav-item"><a href="./#about">ABOUT</a></li>
+            <li class="gnav-item"><a href="./#contact">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- /header -->
 
-    // Processingスケッチを初期化するJavaScriptコード
-    var sketch = function(p) {
-      var bubbles; // Bubbleクラスを格納するArrayList
-      var img;
-      var maxSize = 60;
+    <main class="content">
 
-      p.setup = function() {
-        p.createCanvas(800, 600);
-        p.frameRate(60);
-        p.noStroke();
-        //ArrayListの初期化
-        bubbles = new Array();
-        if (img) {
-          img.resize(p.width, p.height);
-        }
-        //最初のきっかけの円を描画する
-        for (var i = 0; i < 10; i++) {
-          var loc = p.createVector(p.random(p.width), p.random(p.height));
-          bubbles.push(new Bubble(loc));
-        }
-      };
+      <article class="article">
+        <div class="article-container">
+          <h2 class="article-title">processingを用いたアート</h2>
+          <div class="article-body">
+            <p>
+              マウスに引力をもたせ、カラフルな球がマウスに引き寄せられていくコードを作成しました。
+            </p>
 
-      p.draw = function() {
-        p.background(0);
-        //ArrayListに格納された数だけBubbleを描画
-        for (var i = 0; i < bubbles.length; i++) {
-          bubbles[i].draw();
-        }
-        //Bubbleの状態を確認
-        for (var i = 0; i < bubbles.length; i++) {
-          //もしアクティブな結果だったら
-          if (bubbles[i].isDead == false) {
-            //円の周囲のピクセルの色を確認
-            var expand = bubbles[i].checkPixel();
-            //もしこれ以上膨張できない場合
-            if (expand == false) {
-              //新規にBubbleを生成
-              var loc;
-              //余白が見つかるまで繰り返し
-              while (true) {
-                loc = p.createVector(p.random(p.width), p.random(p.height));
-                var c = p.get(int(loc.x), int(loc.y));
-                if ((p.red(c) + p.blue(c) + p.green(c)) == 0) break;
-              }
-              //余白に新規Bubbleを生成
-              bubbles.push(new Bubble(loc));
-              bubbles[i].isDead = true;
-            }
-          }
-        }
-      };
+            <h3>球の数</h3>
+            <p>
+              <label for="numParticles">球の数：</label>
+              <input type="number" id="numParticles" value="3000">
+              <button onclick="updateParticles()">更新する</button>
+            </p>
+            
+            <h3>実行結果</h3>
+            マウスに球を引き寄せるためには枠の中でクリックしたあと好きな方向に動かしてみてください。
+            <p><canvas datasrc="mouse.pde" width="200" height="200"></canvas></p>
+            
+            <h3>コーディングについて</h3>
+            <p>
+              Web上で実行するとやはり重くなってしまいます。<br>
+              <a href="mouse.pde" download="mouse.pde">こちら</a>からダウンロードしてぜひ確認してください。
+            </p>
+          </div>
+          <div class="home-link">
+            <a href="./#works">Works一覧へ</a>
+          </div>
+        </div>
+      </article>
 
-      //マウスクリックで初期化
-      p.mouseClicked = function() {
-        // ArrayListをクリア
-        bubbles = [];
-        //きっかけの円を描画
-        for (var i = 0; i < 100; i++) {
-          var loc = p.createVector(p.random(p.width), p.random(p.height));
-          bubbles.push(new Bubble(loc));
-        }
-      };
+      <div class="page-top" id="js-page-top">
+        <span class="material-icons-outlined">expand_less</span>
+      </div>
+    </main>
 
-      // Bubbleクラス
-      // 円が膨張しながら空間を重鎮していく
-      var Bubble = function(_location) {
-        this.size = 0;
-        this.expandSpeed = 4.0;
-        if (img) {
-          this.circleColor = p.color(img.get(int(_location.x), int(_location.y)));
-        } else {
-          this.circleColor = p.color(255); // デフォルトの色
-        }
-        this.location = _location;
-        this.expand = true;
-        this.isDead = false;
-      };
+    <!-- footer -->
+    <footer class="footer">
+      <div class="copyright">&copy;SHUMA HARA</div>
+    </footer>
+    <!-- /footer -->
 
-      Bubble.prototype.draw = function() {
-        if (this.expand == true) {
-          this.size += this.expandSpeed;
-        }
-        p.fill(this.circleColor);
-        p.ellipse(this.location.x, this.location.y, this.size, this.size);
-      };
-
-      Bubble.prototype.checkPixel = function() {
-        var nextSize = this.size + this.expandSpeed;
-        for (var i = 0; i < p.TWO_PI; i += 0.01) {
-          var x = p.int(p.cos(i) * nextSize / 2.0 + this.location.x);
-          var y = p.int(p.sin(i) * nextSize / 2.0 + this.location.y);
-          var c = p.get(x, y);
-          if ((p.red(c) + p.blue(c) + p.green(c)) > 0 || this.size > maxSize) {
-            this.expand = false;
-          }
-        }
-        return this.expand;
-      };
-    };
-
-    // Processingスケッチをmycanvasに適用
-    var myp5 = new p5(sketch, 'mycanvas');
-  </script>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type='text/javascript' src="js/script.js"></script>
 </body>
 </html>
