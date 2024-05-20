@@ -1,8 +1,6 @@
-int NUM = 3000;
+int NUM
 
-ParticleVec3[] particles = new ParticleVec3[NUM];
-
-void setup(){
+void setup(int ){
   size(800, 600, P3D);
   frameRate(60);
   
@@ -154,5 +152,22 @@ class ParticleVec3 {
     if(location.z < min.z){
       location.z = min.z;
     }
+  }
+}
+
+
+void updateNumParticles(int newNum) {
+  NUM = newNum; // 新しい球の数をセット
+  
+  // パーティクルの配列を再初期化
+  particles = new ParticleVec3[NUM];
+  
+  // パーティクルを再生成
+  for(int i = 0; i < NUM; i++){
+    particles[i] = new ParticleVec3();
+    particles[i].location.set(random(width), random(height), random(height / 2));
+    particles[i].gravity.set(0.0, 0.0, 0.0);
+    particles[i].friction = 0.01;
+    particles[i].radius = random(1, 5); // ランダムな大きさを設定する
   }
 }
