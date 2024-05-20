@@ -57,7 +57,15 @@
               <input type="number" id="numParticles" value="3000">
               <button onclick="updateParticles()">更新する</button>
             </p>
-            
+            <script>
+              function updateParticles() {
+                // HTMLから入力された値を取得
+                var numParticles = document.getElementById("numParticles").value;
+                
+                // Processing.jsのスケッチ内のupdateNumParticles関数を呼び出して球の数を更新
+                Processing.getInstanceById('mosaic').updateNumParticles(numParticles);
+              }
+              </script>
             <h3>実行結果</h3>
             <p>マウスに球を引き寄せるためには枠の中でクリックしたあと好きな方向に動かしてみてください。<br>
             ※スマートフォンでは、動かないのでパソコンで実行してください。
