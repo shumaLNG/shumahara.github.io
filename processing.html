@@ -9,39 +9,77 @@
     <h1>Processing.js with HTML Input and Reset</h1>
     <canvas id="mycanvas"></canvas>
     <br>
-    <label for="myInput">Enter array size:</label>
-    <input type="number" id="myInput" value="10">
+    <label for="myInput">Enter particle count:</label>
+    <input type="number" id="myInput" value="1000">
     <button id="resetButton">Reset</button>
 
     <script type="text/processing" data-processing-target="mycanvas">
         // Processing.js Code
-        int arraySize = 10;
-        int[] myArray;
+        int NUM = 1000; // Initial particle count
+        Particle[] particles;
 
         void setup() {
-            size(400, 400);
-            initializeArray(arraySize);
+            size(400, 400, P3D);
+            initializeParticles(NUM);
         }
 
         void draw() {
             background(255);
-            fill(0);
-            textSize(32);
-            text("Array size: " + arraySize, 50, 200);
-        }
-
-        void initializeArray(int size) {
-            arraySize = size;
-            myArray = new int[arraySize];
-            for (int i = 0; i < arraySize; i++) {
-                myArray[i] = int(random(100));
+            for (int i = 0; i < NUM; i++) {
+                particles[i].update();
+                particles[i].draw();
+                particles[i].bounceOffWalls();
             }
         }
 
-        void resetSketch(int newSize) {
-            arraySize = newSize;
-            initializeArray(arraySize);
-            redraw();
+        void initializeParticles(int count) {
+            NUM = count;
+            particles = new Particle[NUM];
+            for (int i = 0; i < NUM; i++) {
+                particles[i] = new Particle(random(width), random(height), random(height / 2));
+            }
+        }
+
+        void resetSketch(int newCount) {
+            initializeParticles(newCount);
+        }
+
+        class Particle {
+            PVector location;
+            PVector velocity;
+            PVector acceleration;
+            float radius;
+
+            Particle(float x, float y, float z) {
+                location = new PVector(x, y, z);
+                velocity = new PVector(random(-1, 1), random(-1, 1), random(-1, 1));
+                acceleration = new PVector(0, 0, 0);
+                radius = random(1, 5);
+            }
+
+            void update() {
+                velocity.add(acceleration);
+                location.add(velocity);
+                acceleration.mult(0);
+            }
+
+            void draw() {
+                noStroke();
+                fill(0, 150);
+                ellipse(location.x, location.y, radius * 2, radius * 2);
+            }
+
+            void bounceOffWalls() {
+                if (location.x > width || location.x < 0) {
+                    velocity.x *= -1;
+                }
+                if (location.y > height || location.y < 0) {
+                    velocity.y *= -1;
+                }
+                if (location.z > height / 2 || location.z < 0) {
+                    velocity.z *= -1;
+                }
+            }
         }
     </script>
 
@@ -49,8 +87,8 @@
         // JavaScript to handle input changes and reset the sketch
         document.getElementById('resetButton').addEventListener('click', function() {
             var pjs = Processing.getInstanceById('mycanvas');
-            var newSize = parseInt(document.getElementById('myInput').value);
-            pjs.resetSketch(newSize);
+            var newCount = parseInt(document.getElementById('myInput').value);
+            pjs.resetSketch(newCount);
         });
     </script>
 </body>
