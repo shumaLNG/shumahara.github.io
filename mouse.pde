@@ -1,4 +1,4 @@
-int NUM = 100;
+int NUM = 1000;
 ParticleVec3[] particles = new ParticleVec3[NUM];
 
 void setup(int ){
