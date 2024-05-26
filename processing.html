@@ -50,28 +50,16 @@
             <p>
               マウスに引力をもたせ、カラフルな球がマウスに引き寄せられていくコードを作成しました。
             </p>
-
-            <!-- <h3>球の数</h3>
-            <p>
-              <label for="numParticles">球の数：</label>
-              <input type="number" id="numParticles" value="3000">
-              <button onclick="updateParticles()">更新する</button>
-            </p>
-            <script>
-              function updateParticles() {
-                // HTMLから入力された値を取得
-                var numParticles = document.getElementById("numParticles").value;
-                
-                // Processing.jsのスケッチ内のupdateNumParticles関数を呼び出して球の数を更新
-                Processing.getInstanceById('mosaic').updateNumParticles(numParticles);
-              }
-              </script>-->
-
             
             <h3>実行結果</h3>
             <p>マウスを画面内ドラッグすることでマウスポインタに引力が発生し、カラフルな球が引き寄せられ、マウスポインタを追いかけます。マウスポインタを離すと、その瞬間に吸引力が消失し、マウスポインタから放射状に広がるランダムな力をそれぞれの球に与えています。<br>
             ※スマートフォンでは、動かないのでパソコンで実行してください。
             </p>
+              <canvas id="mycanvas"></canvas>
+              <br>
+              <label for="myInput">Enter array size:</label>
+              <input type="number" id="myInput" value="10">
+              <button id="resetButton">Reset</button>
             <p><canvas datasrc="processing/mouse.pde" width="200" height="200"></canvas></p>
             
             <h3>コーディングについて</h3>
