@@ -60,16 +60,26 @@
               <input type="number" id="myInput" value="1000">
               <button id="resetButton">Reset</button>
 
+            <script type="text/javascript">
+              // ボタンをクリックしたときにNUMの値を変更し、Processingの実行画面を再生成する
+              document.getElementById('resetButton').addEventListener('click', function() {
+                  NUM = parseInt(document.getElementById('myInput').value);
+                  setup(); // Processingのsetup関数を再実行する
+              });
+            </script>
+
             <!-- Processingのコード -->
             <script type="text/processing" data-processing-target="mycanvas">
               int NUM = 1000; // 初期値
               int[] myArray;
-              ParticleVec3[] particles = new ParticleVec3[NUM];
+              ParticleVec3[] particles; // パーティクル配列
               
               void setup(){
                 size(200, 200, P3D);
                 frameRate(60);
                 
+                // パーティクル配列を再初期化
+                particles = new ParticleVec3[NUM];
                 for(int i = 0; i < NUM; i++){
                   particles[i] = new ParticleVec3();
                   particles[i].location.set(random(width), random(height), random(height / 2));
@@ -249,12 +259,5 @@
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type='text/javascript' src="js/script.js"></script>
-  <script>
-    // ボタンをクリックしたときにNUMの値を変更し、Processingの実行画面を再生成する
-    document.getElementById('resetButton').addEventListener('click', function() {
-        NUM = parseInt(document.getElementById('myInput').value);
-        setup(); // Processingのsetup関数を再実行する
-    });
-  </script>
 </body>
 </html>
