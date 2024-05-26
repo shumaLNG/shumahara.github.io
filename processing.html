@@ -17,8 +17,7 @@
   <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="img/favicon.ico" />
   <link rel="canonical" href="URLが入る" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.js"></script>
+  <script src="js/processing.js"></script>
 </head>
 <body>
   <div class="wrapper">
@@ -59,7 +58,7 @@
             <p>マウスを画面内ドラッグすることでマウスポインタに引力が発生し、カラフルな球が引き寄せられ、マウスポインタを追いかけます。マウスポインタを離すと、その瞬間に吸引力が消失し、マウスポインタから放射状に広がるランダムな力をそれぞれの球に与えています。<br>
             ※スマートフォンでは、動かないのでパソコンで実行してください。
             </p>
-            <div id="sketch-holder"></div>
+            <canvas id="processing-canvas"></canvas>
             
             <h3>コーディングについて</h3>
             <p>
@@ -87,35 +86,35 @@
 
   </div>
   
-  <script type="text/pde" id="processing-script">
-    let NUM;
-    let particles = [];
-    let colors = [];
+  <script type="application/processing" id="processing-script">
+    int NUM;
+    ParticleVec3[] particles;
+    color[] colors;
 
-    function setup(){
-      let canvas = createCanvas(800, 600, WEBGL);
-      canvas.parent('sketch-holder');
+    void setup(){
+      size(800, 600, P3D);
       frameRate(60);
       NUM = int(document.getElementById('numParticles').value);
+      particles = new ParticleVec3[NUM];
+      colors = new color[NUM];
       
-      for(let i = 0; i < NUM; i++){
-        let particle = new ParticleVec3();
-        particle.location.set(random(width), random(height), random(height / 2));
-        particle.gravity.set(0.0, 0.0, 0.0);
-        particle.friction = 0.01;
-        particle.radius = random(1, 5); // ランダムな大きさを設定する
-        particles.push(particle);
-        colors.push(color(random(255), random(255), random(255))); // ランダムな色を設定する
+      for(int i = 0; i < NUM; i++){
+        particles[i] = new ParticleVec3();
+        particles[i].location.set(random(width), random(height), random(height / 2));
+        particles[i].gravity.set(0.0, 0.0, 0.0);
+        particles[i].friction = 0.01;
+        particles[i].radius = random(1, 5); // ランダムな大きさを設定する
+        colors[i] = color(random(255), random(255), random(255)); // ランダムな色を設定する
       }
     }
 
-    function draw(){
+    void draw(){
       background(0); // 背景を一度だけ描画する
       noStroke();
       fill(0, 31);
       rect(0, 0, width, height);
       
-      for(let i = 0; i < NUM; i++){
+      for(int i = 0; i < NUM; i++){
         fill(colors[i]); // 事前に設定した色を使用する
         
         particles[i].update();
@@ -124,81 +123,100 @@
       }
     }
 
-    function mouseDragged(){
-      for(let i = 0; i < NUM; i++){
-        let mouseLoc = createVector(mouseX, mouseY);
+    void mouseDragged(){
+      for(int i = 0; i < NUM; i++){
+        PVector mouseLoc = new PVector(mouseX, mouseY);
         particles[i].attract(mouseLoc, 200, 5, 20);
       }
     }
 
     class ParticleVec3 {
-      constructor() {
-        this.location = createVector(0.0, 0.0, 0.0);
-        this.velocity = createVector(0.0, 0.0, 0.0);
-        this.acceleration = createVector(0.0, 0.0, 0.0);
-        this.gravity = createVector(0.0, 0.0, 0.0); // 重力なし
-        this.radius = 4.0;
-        this.mass = 1.0;  // 質量は1.0
-        this.friction = 0.01; // 摩擦力は0.01
-        this.G = 1.0;   // 重力定数は1.0
-        this.min = createVector(0, 0, 0);
-        this.max = createVector(width, height, height / 2);
+      PVector location;          // 位置
+      PVector velocity;          // 速度
+      PVector acceleration; // 加速度
+      PVector gravity;           // 重力
+      float mass;                     // 質量
+      float friction;                 // 摩擦力
+      PVector min;                 // 移動範囲 min
+      PVector max;                // 移動範囲　max
+      float radius;                   // パーティクル半径
+      float G;                            // 重力定数
+      
+      // コンストラクタ
+      ParticleVec3() {
+        radius = 4.0;
+        mass = 1.0;  // 質量は1.0
+        friction = 0.01; // 摩擦力は0.01
+        G = 1.0;   // 重力定数は1.0
+        // 位置、速度、加速度を初期化
+        location = new PVector(0.0, 0.0, 0.0);
+        velocity = new PVector(0.0, 0.0, 0.0);
+        acceleration = new PVector(0.0, 0.0, 0.0);
+        gravity = new PVector(0.0, 0.0, 0.0); // 重力なし
+        // 移動範囲を設定
+        min = new PVector(0, 0, 0);
+        max = new PVector(width, height, height / 2);
       }
       
-      update() {
-        this.acceleration.add(this.gravity); // 重力を加える
-        this.velocity.add(this.acceleration); // 加速度から速度を算出する
-        this.velocity.mult(1.0 - this.friction); // 摩擦力から速度を変化
-        this.location.add(this.velocity); // 速度から位置を算出する
-        this.acceleration.set(0, 0, 0); // 加速度を0にリセット（等速運動）する
+       // 運動方程式から位置を更新
+      void update() {
+        acceleration.add(gravity); // 重力を加える
+        velocity.add(acceleration); // 加速度から速度を算出する
+        velocity.mult(1.0 - friction); // 摩擦力から速度を変化
+        location.add(velocity); // 速度から位置を算出する
+        acceleration.set(0, 0, 0); // 加速度を0にリセット（等速運動）する
       }
       
-      draw() {
-        push();
-        translate(this.location.x - width / 2, this.location.y - height / 2, this.location.z - height / 4);
-        sphere(this.radius); // 3Dの球として描画
-        pop();
+      // 描画する
+      void draw() {
+        pushMatrix();
+        translate(location.x, location.y, location.z);
+        ellipse(0, 0, mass * radius * 2, mass * radius * 2); // 3Dの球として描画
+        popMatrix();
       }
       
-      addForce(force){
-        force.div(this.mass);
-        this.acceleration.add(force);
+      // 力を加える
+      void addForce(PVector force){
+        force.div(mass);
+        acceleration.add(force);
       }
       
-      attract(center, _mass, min, max){
-        let distance = p5.Vector.dist(center, this.location);
+      // 引力を計算する
+      void attract(PVector center, float _mass, float min, float max){
+        float distance = PVector.dist(center, location);
         distance = constrain(distance, min, max);
-        let strength = this.G * (this.mass * _mass) / (distance * distance);
-        let force = p5.Vector.sub(center, this.location);
+        float strength = G * (mass * _mass) / (distance * distance);
+        PVector force = PVector.sub(center, location);
         force.normalize();
         force.mult(strength);
-        this.addForce(force);
+        addForce(force);
       }
       
-      bounceOffWalls(){
-        if(this.location.x > this.max.x){
-          this.location.x = this.max.x;
-          this.velocity.x *= -1;
+      // 壁で跳ね返る
+      void bounceOffWalls(){
+        if(location.x > max.x){
+          location.x = max.x;
+          velocity.x *= -1;
         }
-        if(this.location.x < this.min.x){
-          this.location.x = this.min.x;
-          this.velocity.x *= -1;
+        if(location.x < min.x){
+          location.x = min.x;
+          velocity.x *= -1;
         }
-        if(this.location.y > this.max.y){
-          this.location.y = this.max.y;
-          this.velocity.y *= -1;
+        if(location.y > max.y){
+          location.y = max.y;
+          velocity.y *= -1;
         }
-        if(this.location.y < this.min.y){
-          this.location.y = this.min.y;
-          this.velocity.y *= -1;
+        if(location.y < min.y){
+          location.y = min.y;
+          velocity.y *= -1;
         }
-        if(this.location.z > this.max.z){
-          this.location.z = this.max.z;
-          this.velocity.z *= -1;
+        if(location.z > max.z){
+          location.z = max.z;
+          velocity.z *= -1;
         }
-        if(this.location.z < this.min.z){
-          this.location.z = this.min.z;
-          this.velocity.z *= -1;
+        if(location.z < min.z){
+          location.z = min.z;
+          velocity.z *= -1;
         }
       }
     }
@@ -206,10 +224,13 @@
 
   <script>
     function startSketch() {
-      if (window.processingInstance) {
-        window.processingInstance.remove();
-      }
-      window.processingInstance = new p5(null, 'sketch-holder');
+      const canvas = document.getElementById('processing-canvas');
+      const numParticles = document.getElementById('numParticles').value;
+      canvas.setAttribute('data-processing-sources', 'mouse.pde');
+      const script = document.getElementById('processing-script').textContent;
+      const updatedScript = script.replace(/NUM = .+?;/, `NUM = ${numParticles};`);
+      canvas.setAttribute('data-processing-sources', '');
+      const processingInstance = new Processing(canvas, updatedScript);
     }
   </script>
 </body>
