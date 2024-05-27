@@ -57,9 +57,14 @@
             ※スマートフォンでは、動かない場合があるのでパソコンで実行してください。
             </p>
             <p>
-               <label for="myInput">配列のサイズを入力:</label>
-              <input type="number" id="myInput" value="1500">
-              <button id="resetButton">リセット</button>
+               <div id="control-panel">
+                    <label for="myInput">配列のサイズを入力:</label>
+                    <input type="number" id="myInput" value="1500">
+                    <button id="resetButton" class="buttonOutlineGradient">
+                        <div class="buttonOutlineGradient_item">リセット</div>
+                    </button>
+                </div>
+
               <canvas id="mycanvas"></canvas>
               <script type="text/processing" data-processing-target="mycanvas">
                 int NUM = 1500;
