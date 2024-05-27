@@ -20,6 +20,12 @@
   <link rel=”canonical” href=”URLが入る” />
   <script src="js/processing.js">
   </script>
+  <style>
+    a {
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -151,86 +157,52 @@
                     void draw() {
                         pushMatrix();
                         translate(location.x, location.y, location.z);
-                        ellipse(0, 0, mass * radius * 2, mass * radius * 2);
+                        ellipse(0, 0, mass * radius, mass * radius);
                         popMatrix();
                     }
         
-                    void addForce(PVector force){
-                        force.div(mass);
-                        acceleration.add(force);
-                    }
-        
-                    void attract(PVector center, float _mass, float min, float max){
-                        float distance = PVector.dist(center, location);
-                        distance = constrain(distance, min, max);
-                        float strength = G * (mass * _mass) / (distance * distance);
-                        PVector force = PVector.sub(center, location);
-                        force.normalize();
-                        force.mult(strength);
-                        addForce(force);
-                    }
-        
-                    void bounceOffWalls(){
-                        if(location.x > max.x){
-                            location.x = max.x;
+                    void bounceOffWalls() {
+                        if (location.x < min.x || location.x > max.x) {
                             velocity.x *= -1;
+                            location.x = constrain(location.x, min.x, max.x);
                         }
-                        if(location.x < min.x){
-                            location.x = min.x;
-                            velocity.x *= -1;
-                        }
-                        if(location.y > max.y){
-                            location.y = max.y;
+                        if (location.y < min.y || location.y > max.y) {
                             velocity.y *= -1;
+                            location.y = constrain(location.y, min.y, max.y);
                         }
-                        if(location.y < min.y){
-                            location.y = min.y;
-                            velocity.y *= -1;
-                        }
-                        if(location.z > max.z){
-                            location.z = max.z;
+                        if (location.z < min.z || location.z > max.z) {
                             velocity.z *= -1;
-                        }
-                        if(location.z < min.z){
-                            location.z = min.z;
-                            velocity.z *= -1;
+                            location.z = constrain(location.z, min.z, max.z);
                         }
                     }
         
-                    void throughWalls(){
-                        if(location.x > max.x){
-                            location.x = max.x;
-                        }
-                        if(location.x < min.x){
-                            location.x = min.x;
-                        }
-                        if(location.y > max.y){
-                            location.y = max.y;
-                        }
-                        if(location.y < min.y){
-                            location.y = min.y;
-                        }
-                        if(location.z > max.z){
-                            location.z = max.z;
-                        }
-                        if(location.z < min.z){
-                            location.z = min.z;
+                    void attract(PVector target, float strength, float minDistance, float maxDistance) {
+                        PVector direction = PVector.sub(target, location);
+                        float distance = direction.mag();
+                        if (distance > minDistance && distance < maxDistance) {
+                            float force = (G * mass * strength) / (distance * distance);
+                            direction.normalize();
+                            direction.mult(force);
+                            acceleration.add(direction);
                         }
                     }
                 }
-            </script>
+        
+                void keyPressed() {
+                    if (key == 'r' || key == 'R') {
+                        resetSketch(NUM);
+                    }
+                }
+        
+                document.getElementById("resetButton").addEventListener("click", function() {
+                    var newSize = document.getElementById("myInput").value;
+                    resetSketch(newSize);
+                });
+              </script>
             </p>
-            
-            <h3>コーディングについて</h3>
             <p>
-              Web上で実行するとやはり重くなってしまいますね。。。<br>
-              <a href="mouse.pde" download="mouse.pde" class="blue-link">mouse</a>←こちらからダウンロードしてぜひ確認してください！！<br>
-              この空間は敢えて無重力空間にしており、マウスポインタがブラックホールのような引力を持っているように設定しました。引力の計算方法は万有引力の考え方で関数を作成しています。その他のコードの詳細についても、コード内のメモに書いてあるので確認してください。<br>
-              ※ほかの.pdeと同じファイルに入れないでください。
+              <a href="mouse.pde" download="mouse.pde" class="blue-link">mouse</a>
             </p>
-          </div>
-          <div class="home-link">
-            <a href="./#works">Works一覧へ</a>
           </div>
         </div>
       </article>
@@ -247,13 +219,6 @@
     <!-- /footer -->
 
   </div>
-   <script>
-        document.getElementById('resetButton').addEventListener('click', function() {
-            var pjs = Processing.getInstanceById('mycanvas');
-            var newSize = parseInt(document.getElementById('myInput').value);
-            pjs.resetSketch(newSize);
-        });
-    </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type='text/javascript' src="js/script.js"></script>
 </body>
