@@ -19,7 +19,7 @@ button {
 /* ボタンのスタイル */
 .buttonOutlineGradient {
   position: relative;
-  display: block;
+  display: inline-block;
   width: 100%;
   max-width: 100px;
   height: 40px;
@@ -48,7 +48,7 @@ button {
 
 .buttonOutlineGradient_item {
   position: relative;
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   width: 100%;
