@@ -1,7 +1,7 @@
 PImage img;
 
 void setup(){
-  size(800, 800);
+  size(800, 800);//画像のサイズを変える
   stroke(255);
   img = loadImage("hara.jpg"); //好きな画像に変更してください。
   img.resize(width, height);
