@@ -3,7 +3,7 @@ PImage img;
 int maxSize = 60;
 
 void setup(){
-  size(800, 800);
+  size(800, 800); //画像のサイズに合わせる
   frameRate(60);
   noStroke();
   //ArrayListの初期化
