@@ -119,6 +119,11 @@ img {
   letter-spacing: .05em;
   color: #333;
 }
+
+.gnav-item a:hover{
+  color: #e85298;
+}
+
 .gnav-item a:after {
   position: absolute;
   bottom: 0;
