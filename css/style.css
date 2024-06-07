@@ -99,6 +99,11 @@ img {
   color: #333;
 }
 
+.header-logo a:hover{
+   color: #e85298;
+}
+
+
 .gnav-list {
   display: flex;
   justify-content: space-between;
