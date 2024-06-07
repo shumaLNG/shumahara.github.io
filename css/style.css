@@ -134,6 +134,7 @@ img {
 
 .gnav-item a:hover:after {
   width: 100%;
+  background-color: #e85298;
 }
 
 /*--------------------------------
