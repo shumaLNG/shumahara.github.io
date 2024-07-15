@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
   <meta property='og:type' content='website'>
-  <meta property='og:title' content='WebデザイナーTARO YAMADA ポートフォリオ'>
+  <meta property='og:title' content='SHUMA HARAポートフォリオ'>
   <meta property='og:url' content='URLが入る'>
-  <meta property='og:description' content='TARO YAMADAのポートフォリオサイトです。'>
+  <meta property='og:description' content='SHUMA HARAのポートフォリオサイトです。'>
   <meta property="og:image" content="img/ogp.png">
-  <meta name="description" content="TARO YAMADAのポートフォリオサイトです" />
-  <title>TARO YAMADA ポートフォリオ</title>
+  <meta name="description" content="SHUMA HARAのポートフォリオサイトです" />
+  <title>SHUMA HARA PORTFOLIO</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
@@ -17,6 +17,10 @@
   <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="img/favicon.ico" />
   <link rel=”canonical” href=”URLが入る” />
+  <!-- A-FrameをCDNから読み込む -->
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <!-- aframe-orbit-controlsをCDNから読み込む -->
+  <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +30,7 @@
     <header class="header ">
       <div class="container">
         <h1 class="header-logo">
-          <a href=".">TARO YAMADA</a>
+          <a href=".">SHUMA HARA</a>
         </h1>
         <nav class="gnav">
           <ul class="gnav-list">
