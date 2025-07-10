@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta property='og:type' content='website'>
+  <meta property='og:title' content='SHUMA HARAポートフォリオ'>
+  <meta property='og:url' content='URLが入る'>
+  <meta property='og:description' content='SHUMA HARAのポートフォリオサイトです。'>
+  <meta property="og:image" content="img/ogp.png">
+  <meta name="description" content="SHUMA HARAのポートフォリオサイトです" />
+  <title>SHUMA HARA PORTFOLIO</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="css/ress.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="img/favicon.ico" />
+  <link rel=”canonical” href=”URLが入る” />
+  <!-- A-FrameをCDNから読み込む -->
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <!-- aframe-orbit-controlsをCDNから読み込む -->
+  <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- header -->
+    <header class="header ">
+      <div class="container">
+        <h1 class="header-logo">
+          <a href=".">SHUMA HARA</a>
+        </h1>
+        <nav class="gnav">
+          <ul class="gnav-list">
+            <li class="gnav-item"><a href=".#works">WORKS</a></li>
+            <li class="gnav-item"><a href="./#skill">SKILL</a></li>
+            <li class="gnav-item"><a href="./#about">ABOUT</a></li>
+            <li class="gnav-item"><a href="./#contact">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- /header -->
+
+    <main class="content">
+
+      <article class="article">
+        <div class="article-container">
+          <h2 class="article-title">沖田総悟</h2>
+          <div class="article-body">
+            <p>
+              <div style="text-align: center;"><img src="img/Okita/Okita.png" /></div>
+              前回の土方十四郎に引き続き、Blenderを用いて「銀魂」という漫画の沖田総悟の3Dモデルを作成しました！！<br>
+            </p>
+            
+            <h3>3Dモデルの全体像</h3>
+            <p>
+              作成した3Dモデルを前後左右の視点から見た画像を次に表示します。<br>
+              できるだけ自然な等身で作成することを意識しました。また、腰や膝を少し曲げることでよりリアルな人間の体に近づけました。<br>
+              
+              
+              <img src="img/Okita/O_zentai.png" alt=""><br>
+            </p>
+            
+            <h3>工夫したところ</h3>
+            <p>
+              前回同様、3Dモデルの服をそれぞれ作成することにより、服を脱ぎ着することを可能にしました。
+              <img src="img/Okita/Kisekae.png" alt="">
+            </p>
+            <p>
+              今回は沖田のチャームポイントであるアイマスクの作成も行いました！<br>
+              アイマスクの紐の感じや、頭にフィットさせるための微調整を行いました。
+              <img src="img/Okita/Eyemask2.png" alt=""><br>
+              <div style="text-align: center;"><img src="img/Okita/eyemask.png" /></div>
+            </p>
+            <P>
+              さらには、前回紹介できなかった細部のこだわりポイントを紹介します！<br>
+              ①目の内部<br>
+              目を正面から見ると白目しか見えませんが、少し横から見ると赤い部分が見えるようにしています。
+              <img src="img/Okita/eyes.png" alt=""><br>
+              ②口の内部<br>
+              口の細部にまでこだわって作成しており、歯や舌まで作成しています。
+              <img src="img/Okita/mouth.png" alt="">
+            </P>
+            
+            <h3>Blenderのデータ</h3>
+            <p>
+              <a href="blender/Okita.blend" download="Okita.blend">Okita</a>のBlenderのデータ
+            </p>
+          </div>
+          <div class="home-link">
+            <a href="./#works">Works一覧へ</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="page-top" id="js-page-top">
+        <span class="material-icons-outlined">expand_less</span>
+      </div>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="copyright">&copy;SHUMA HARA</div>
+    </footer>
+    <!-- /footer -->
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type='text/javascript' src="js/script.js"></script>
+</body>
+</html>
